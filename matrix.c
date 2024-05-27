@@ -13,6 +13,7 @@ matrix create_matrix(int rows, int cols)
     }
     return m;
 }
+
 matrix set_matrix(int *m, int rows, int cols)
 {
     matrix mat = {.rows = rows,
@@ -60,13 +61,10 @@ void display_matrix(const matrix *m)
 matrix *matrix_multiply(const matrix *LHS, const matrix *RHS)
 {
     if (LHS->cols != RHS->rows)
-    {
-        printf("retuning null\n");
         return NULL;
-    }
     matrix *n = (matrix *)malloc(sizeof(matrix));
     *n = create_matrix(LHS->rows, RHS->cols);
-    int n_ops = LHS->cols * RHS->rows;
+
     for (int l_row = 0; l_row < LHS->rows; l_row++)
     {
         for (int r_row = 0; r_row < RHS->rows; r_row++)
@@ -81,7 +79,7 @@ matrix *matrix_multiply(const matrix *LHS, const matrix *RHS)
             matrix_set_row_col(n, l_row, r_row, sum);
         }
     }
-    display_matrix(n);
+
     return n;
 }
 

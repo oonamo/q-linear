@@ -90,9 +90,9 @@ int matrix_get_row_col(const matrix *m, int row, int col);
 void matrix_display(const matrix *n);
 
 /**
- * @brief multilpy two matrixes of valid size
+ * @brief multilpy two matrices of valid size
  *
- * Multiply two matrixes of if the number of rows in LHS are equal
+ * Multiply two matrices of if the number of rows in LHS are equal
  * to the number of columns in the RHS.
  * Returns NULL if this is not the case.
  *
@@ -104,15 +104,15 @@ void matrix_display(const matrix *n);
 matrix *matrix_multiply(const matrix *LHS, const matrix *RHS);
 
 /**
- * @brief verify if two matrixes are equal
+ * @brief verify if two matrices are equal
  *
- * Checks if the two matrixes have the same number or rows and columns.
+ * Checks if the two matrices have the same number or rows and columns.
  * If they are, it verifies that for every row and column, they have the same
  * value.
  *
  * @param LHS Pointer to the left-hand side  matrix
  * @param RHS Pointer to the right-hand side matrix
- * @return bool, true if the matrixes are equal
+ * @return bool, true if the matrices are equal
  */
 bool matrix_are_equal(const matrix *LHS, const matrix *RHS);
 
