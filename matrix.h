@@ -21,6 +21,22 @@
 #define delete_matrix(m)
 
 /**
+ * @brief Macro to create identity matrix
+ *
+ * Creates an identity matrix with dimensions size x size
+ *
+ * @param size Size of identity matrix
+ */
+#define IDENTITY_MATRIX(size)
+
+enum Identies
+{
+    None,
+    Identity,
+    Triangular,
+};
+
+/**
  * @brief A structure representing a Matrix
  */
 typedef struct matrix
