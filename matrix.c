@@ -60,24 +60,43 @@ void display_matrix(const matrix *m)
 matrix *matrix_multiply(const matrix *LHS, const matrix *RHS)
 {
     if (LHS->cols != RHS->rows)
+    {
+        printf("retuning null\n");
         return NULL;
-    matrix n = create_matrix(LHS->rows, RHS->cols);
+    }
+    matrix *n = (matrix *)malloc(sizeof(matrix));
+    *n = create_matrix(LHS->rows, RHS->cols);
     int n_ops = LHS->cols * RHS->rows;
-    printf("number of operations: %d\n", n_ops);
-    int real_ops = 0;
     for (int l_row = 0; l_row < LHS->rows; l_row++)
     {
-        int col_sum = 0;
-        for (int l_col = 0; l_col < LHS->cols; l_col++)
+        for (int r_row = 0; r_row < RHS->rows; r_row++)
         {
-            int lhs = matrix_get_row_col(LHS, l_row, l_col);
-            int rhs = matrix_get_row_col(LHS, l_row, l_col);
-        }
-        for (int r_col = 0; r_col < RHS->cols; r_col++)
-        {
+            int sum = 0;
+            for (int l_col = 0; l_col < LHS->cols; l_col++)
+            {
+                int lhs = matrix_get_row_col(LHS, l_row, l_col);
+                int rhs = matrix_get_row_col(RHS, l_col, r_row);
+                sum += lhs * rhs;
+            }
+            matrix_set_row_col(n, l_row, r_row, sum);
         }
     }
-    printf("performed %d operations\n", real_ops);
-    display_matrix(&n);
-    return &n;
+    display_matrix(n);
+    return n;
+}
+
+bool matrix_are_equal(const matrix *LHS, const matrix *RHS)
+{
+    if (LHS->cols != RHS->cols || LHS->rows != RHS->rows)
+        return false;
+    for (int rows = 0; rows < LHS->rows; rows++)
+    {
+        for (int cols = 0; cols < LHS->cols; cols++)
+        {
+            if (matrix_get_row_col(LHS, rows, cols) !=
+                matrix_get_row_col(RHS, rows, cols))
+                return false;
+        }
+    }
+    return true;
 }
