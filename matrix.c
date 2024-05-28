@@ -98,3 +98,21 @@ bool matrix_are_equal(const matrix *LHS, const matrix *RHS)
     }
     return true;
 }
+
+bool matrix_is_identity(const matrix *m);
+bool matrix_is_triangula(const matrix *m);
+bool matrix_is_invertibile(const matrix *m);
+
+int matrix_discriminant(const matrix *m);
+
+matrix *matrix_addition(const matrix *LHS, const matrix *RHS)
+{
+    if (LHS->rows != RHS->rows || LHS->cols != RHS->cols)
+        return NULL;
+    matrix *m = (matrix *)malloc(sizeof(matrix));
+    *m = create_matrix(LHS->rows, LHS->cols);
+    /*for (int i = 0;*/
+    return m;
+};
+
+matrix *matrix_scalar(const int scalar, const matrix *RHS);

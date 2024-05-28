@@ -132,4 +132,14 @@ matrix *matrix_multiply(const matrix *LHS, const matrix *RHS);
  */
 bool matrix_are_equal(const matrix *LHS, const matrix *RHS);
 
+bool matrix_is_identity(const matrix *m);
+bool matrix_is_triangula(const matrix *m);
+bool matrix_is_invertibile(const matrix *m);
+
+int matrix_discriminant(const matrix *m);
+
+matrix *matrix_addition(const matrix *LHS, const matrix *RHS);
+
+matrix *matrix_scalar(const int scalar, const matrix *RHS);
+
 #endif
