@@ -2,9 +2,16 @@
 
 matrix create_matrix(int rows, int cols)
 {
+    if (rows <= 0)
+        rows = 1;
+
+    if (cols <= 0)
+        cols = 1;
+
     matrix m = {.rows = rows,
                 .cols = cols,
                 .matrix = (int **)malloc(rows * sizeof(int *))};
+
     for (int i = 0; i < rows; i++)
     {
         m.matrix[i] = (int *)malloc(cols * sizeof(int));
@@ -13,6 +20,10 @@ matrix create_matrix(int rows, int cols)
     }
     return m;
 }
+
+int matrix_get_rows(const matrix *m) { return m->rows; }
+
+int matrix_get_cols(const matrix *m) { return m->cols; }
 
 matrix set_matrix(int *m, int rows, int cols)
 {
@@ -111,8 +122,22 @@ matrix *matrix_addition(const matrix *LHS, const matrix *RHS)
         return NULL;
     matrix *m = (matrix *)malloc(sizeof(matrix));
     *m = create_matrix(LHS->rows, LHS->cols);
-    /*for (int i = 0;*/
+    for (int row = 0; row < LHS->rows; row++)
+    {
+        for (int col = 0; col < LHS->cols; col++)
+        {
+            m->matrix[row][col] = LHS->matrix[row][col] + RHS->matrix[row][col];
+        }
+    }
     return m;
 };
 
-matrix *matrix_scalar(const int scalar, const matrix *RHS);
+matrix *matrix_scalar(const int scalar, const matrix *RHS)
+{
+    matrix *m = (matrix *)malloc(sizeof(matrix));
+    *m = create_matrix(RHS->rows, RHS->cols);
+    for (int row = 0; row < RHS->rows; row++)
+        for (int col = 0; col < RHS->cols; col++)
+            m->matrix[row][col] = scalar * RHS->matrix[row][col];
+    return m;
+}

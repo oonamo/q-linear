@@ -54,6 +54,9 @@ typedef struct matrix
  * @return matrix with provided rows and columns
  */
 matrix create_matrix(int rows, int cols);
+int matrix_get_rows(const matrix *m);
+
+int matrix_get_cols(const matrix *m);
 
 /**
  * @brief create a matrix from a 2d pointer array

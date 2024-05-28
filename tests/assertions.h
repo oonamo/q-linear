@@ -3,6 +3,7 @@
 #ifndef MATRIX_H
 #include "../matrix.h"
 #endif
+#include <assert.h>
 
 /**
  * @brief Asserts that a Pointer to a 2d matrix is the same as a matrix
